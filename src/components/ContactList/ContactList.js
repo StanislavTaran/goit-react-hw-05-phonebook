@@ -1,11 +1,14 @@
 import React from 'react';
 import propTypes from 'prop-types';
+// import { CSSTransition } from 'react-transition-group';
 import ContactItem from '../ContactItem/ContactItem';
+import styles from './ContactList.module.css';
+// import fadeTransition from '../../transitions/fade.module.css';
 
 const ContactList = ({ contacts, onRemoveContact }) => {
   return (
     contacts.length > 0 && (
-      <ul>
+      <ul className={styles.contactList}>
         {contacts.map(item => {
           return (
             <li key={item.id}>

@@ -18,7 +18,6 @@ const messages = {
 
 export default class ContactForm extends Component {
   static propTypes = {
-    title: propTypes.string.isRequired,
     onAddContact: propTypes.func.isRequired,
   };
 
@@ -26,6 +25,7 @@ export default class ContactForm extends Component {
     name: '',
     number: '',
     errors: null,
+    isPageLoaded: false,
   };
 
   InputNameId = uuidv4();
@@ -43,13 +43,11 @@ export default class ContactForm extends Component {
     e.preventDefault();
 
     validateAll(this.state, rules, messages)
-      .then(data => {
-        console.log(data);
+      .then(() => {
         onAddContact({ ...this.state });
         this.reset();
       })
       .catch(errors => {
-        console.log(errors);
         const formatedErrors = {};
 
         errors.forEach(error => {
@@ -66,16 +64,15 @@ export default class ContactForm extends Component {
   };
 
   render() {
-    const { title } = this.props;
     const { name, number, errors } = this.state;
 
     return (
       <div>
-        <h3>{title}</h3>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className={styles.form}>
           <div>
             <label htmlFor={this.InputNameId}>Name:</label>
             <input
+              className={styles.input}
               name="name"
               id={this.InputNameId}
               type="text"
@@ -88,6 +85,7 @@ export default class ContactForm extends Component {
           <div>
             <label htmlFor={this.InputNuberId}>Number:</label>
             <input
+              className={styles.input}
               name="number"
               id={this.InputNuberId}
               type="number"

@@ -9,10 +9,12 @@
     "@testing-library/user-event": "^7.2.1",
     "gh-pages": "^2.2.0",
     "indicative": "^7.4.4",
+    "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
+    "react-transition-group": "^4.4.1",
     "uuid": "^7.0.3"
   },
   "scripts": {

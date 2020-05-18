@@ -7,9 +7,9 @@ const ContactItem = ({ contactItem, onRemoveContact }) => {
 
   return (
     <div className={styles.container}>
-      <p>
+      <p className={styles.numberInfo}>
         {name}
-        <span> : </span>
+        &nbsp;:&nbsp;
         <span>{number}</span>
       </p>
       <button

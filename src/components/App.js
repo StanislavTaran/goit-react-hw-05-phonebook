@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
+import Header from './Header/Header';
 import TabletShape from './TabletShape/TabletShape';
 
 export default class App extends Component {
@@ -88,7 +89,8 @@ export default class App extends Component {
 
     return (
       <TabletShape>
-        <ContactForm title="Phonebook" onAddContact={this.addToContacts} />
+        <Header />
+        <ContactForm onAddContact={this.addToContacts} />
         {contacts.length > 1 && (
           <Filter hanleFilterChange={this.hanleFilterChange} />
         )}

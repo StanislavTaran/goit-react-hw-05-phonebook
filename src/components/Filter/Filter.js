@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Filter = ({ hanleFilterChange }) => {
   return (
     <div>
-      <h3>Find your contact:</h3>
+      <h3>Find contacts by name:</h3>
       <input type="text" onChange={hanleFilterChange} />
     </div>
   );
