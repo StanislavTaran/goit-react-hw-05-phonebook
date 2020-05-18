@@ -7,7 +7,7 @@ import styles from './ContactForm.module.css';
 
 const rules = {
   name: 'required | string',
-  number: 'required|min:2|number',
+  number: 'required|min:2',
 };
 
 const messages = {
@@ -32,10 +32,25 @@ export default class ContactForm extends Component {
 
   InputNuberId = uuidv4();
 
-  handleChange = ({ target }) => {
-    const { name, value } = target;
+  handleChange = e => {
+    e.preventDefault();
+    const { value, name } = e.target;
+    let replaceValue = value;
 
-    this.setState({ [name]: value });
+    if (name === 'number') {
+      replaceValue = value.replace(/[^\d]/g, '');
+
+      const regex = /^([^\s]{3})([^\s]{3})([^\s]{2})([^\s]{2})$/g;
+      const match = regex.exec(replaceValue);
+      if (match) {
+        match.shift();
+        replaceValue = match.join('-');
+      }
+    }
+
+    this.setState({
+      [name]: replaceValue,
+    });
   };
 
   handleSubmit = e => {
@@ -79,19 +94,21 @@ export default class ContactForm extends Component {
               onChange={this.handleChange}
               value={name}
               autoComplete="off"
+              maxLength={20}
             />
             {errors && <Notification title={errors.name} />}
           </div>
-          <div>
+          <div className={styles.inputContainer}>
             <label htmlFor={this.InputNuberId}>Number:</label>
             <input
               className={styles.input}
               name="number"
               id={this.InputNuberId}
-              type="number"
+              type="text"
               onChange={this.handleChange}
               value={number}
               autoComplete="off"
+              maxLength={10}
             />
             {errors && <Notification title={errors.number} />}
           </div>

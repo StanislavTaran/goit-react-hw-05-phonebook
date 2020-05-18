@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { CSSTransition } from 'react-transition-group';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
 import Header from './Header/Header';
 import TabletShape from './TabletShape/TabletShape';
+import PopUpNotification from './PopUpNotification/PopUpNotification';
+import slideTransition from '../transitions/slide.module.css';
+import slideReverseTransition from '../transitions/slide-reverse.module.css';
 
 export default class App extends Component {
   state = {
@@ -15,6 +19,7 @@ export default class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
+    isAlreadyinContacts: false,
   };
 
   componentDidMount() {
@@ -45,8 +50,17 @@ export default class App extends Component {
     const isAlreadyinContacts = this.hasContact(name);
 
     if (isAlreadyinContacts) {
-      // eslint-disable-next-line no-alert
-      alert(`Already in contacts ${name}`);
+      this.setState({
+        isAlreadyinContacts: true,
+      });
+
+      setTimeout(() => {
+        this.setState(() => {
+          return {
+            isAlreadyinContacts: false,
+          };
+        });
+      }, 1500);
     } else {
       const contact = {
         name,
@@ -83,17 +97,32 @@ export default class App extends Component {
   }
 
   render() {
-    const { contacts } = this.state;
+    const { contacts, isAlreadyinContacts } = this.state;
 
     const filteredContacts = this.applyFilter();
 
     return (
       <TabletShape>
         <Header />
+        <CSSTransition
+          in={isAlreadyinContacts}
+          timeout={250}
+          classNames={slideReverseTransition}
+          unmountOnExit
+        >
+          <PopUpNotification title="Already in contacts!" />
+        </CSSTransition>
+
         <ContactForm onAddContact={this.addToContacts} />
-        {contacts.length > 1 && (
+        <CSSTransition
+          in={contacts.length > 1}
+          timeout={250}
+          classNames={slideTransition}
+          unmountOnExit
+        >
           <Filter hanleFilterChange={this.hanleFilterChange} />
-        )}
+        </CSSTransition>
+
         <ContactList
           contacts={filteredContacts}
           onRemoveContact={this.removeContact}

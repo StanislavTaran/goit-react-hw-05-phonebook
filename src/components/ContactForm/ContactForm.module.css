@@ -1,6 +1,8 @@
 .button {
   display: block;
-  height: 30px;
+  height: 50px;
+  width: 100%;
+  padding: 10px;
   border-style: solid;
   border-width: 0px 0px 3px;
   box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
@@ -17,25 +19,27 @@
     sans-serif;
   font-weight: 700;
   font-size: 14px;
-  border-color: #3ac162;
-  background-color: #5fcf80;
+  border-color: #00329e;
+  background-color: #060380;
 }
 
 .button:hover,
 .button:focus,
 .button:active {
-  background-color: #4bc970;
-  border-color: #3ac162;
+  background-color: #111f9c;
+  border-color: #4060c9;
 }
 
 .form {
-  -webkit-box-shadow: -1px 3px 10px 4px rgba(171, 171, 171, 1);
-  -moz-box-shadow: -1px 3px 10px 4px rgba(171, 171, 171, 1);
-  box-shadow: -1px 3px 10px 4px rgba(171, 171, 171, 1);
   border-radius: 10px;
   padding: 10px;
 }
 
 .input {
   display: block;
+  width: 100%;
+}
+
+.inputContainer {
+  margin-bottom: 10px;
 }

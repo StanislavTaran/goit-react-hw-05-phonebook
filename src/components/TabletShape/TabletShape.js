@@ -3,12 +3,7 @@ import propTypes from 'prop-types';
 import styles from './TabletShape.module.css';
 
 const TabletShape = ({ children }) => {
-  return (
-    <div className={styles.TabletShape}>
-      <div className={styles.screen}>{children}</div>
-      <div className={styles.logo}> Contacts </div>
-    </div>
-  );
+  return <div className={styles.screen}>{children}</div>;
 };
 
 export default TabletShape;

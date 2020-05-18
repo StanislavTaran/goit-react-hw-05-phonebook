@@ -1,13 +1,14 @@
 .container {
   display: flex;
   justify-content: flex-start;
-  align-items: baseline;
+  align-items: center;
+  height: 80px;
 }
 
 .buttonDelete {
   display: block;
-  height: 30px;
-  width: 40px;
+  height: 50px;
+  width: 50px;
   border-style: solid;
   border-width: 0px 0px 3px;
   box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
@@ -22,12 +23,10 @@
   white-space: nowrap;
   font-family: 'Gotham Rounded A', 'Gotham Rounded B', Helvetica, Arial,
     sans-serif;
-  font-weight: 700;
-  font-size: 14px;
   background-color: #ed5a5a;
   border-color: #ea4343;
-  background-image: url(https://image.flaticon.com/icons/svg/1345/1345823.svg);
-  background-size: 40%;
+  background-image: url(https://img.icons8.com/carbon-copy/2x/delete-forever.png);
+  background-size: 90%;
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -40,5 +39,10 @@
 }
 
 .numberInfo {
-  width: 60%;
+  width: 100%;
+}
+
+.name {
+  display: inline-block;
+  width: 40%;
 }
