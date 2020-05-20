@@ -119,8 +119,14 @@ export default class App extends Component {
         >
           <Filter hanleFilterChange={this.hanleFilterChange} />
         </CSSTransition>
-
-        <ContactList contacts={filteredContacts} onRemoveContact={this.removeContact} />
+        <CSSTransition
+          in={contacts.length > 0}
+          timeout={250}
+          classNames={slideTransition}
+          unmountOnExit
+        >
+          <ContactList contacts={filteredContacts} onRemoveContact={this.removeContact} />
+        </CSSTransition>
       </TabletShape>
     );
   }

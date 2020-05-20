@@ -13,12 +13,7 @@ const ContactList = ({ contacts, onRemoveContact }) => {
         <TransitionGroup component="ul" className={styles.contactList}>
           {contacts.map(item => {
             return (
-              <CSSTransition
-                timeout={250}
-                unmountOnExit
-                classNames={slideTransition}
-                key={item.id}
-              >
+              <CSSTransition timeout={250} unmountOnExit classNames={slideTransition} key={item.id}>
                 <li className={styles.contactItem}>
                   <ContactItem
                     contactItem={item}
