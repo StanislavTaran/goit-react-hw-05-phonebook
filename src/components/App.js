@@ -41,9 +41,7 @@ export default class App extends Component {
 
   hasContact = name => {
     const { contacts } = this.state;
-    return contacts.some(
-      item => item.name.toLowerCase() === name.toLowerCase(),
-    );
+    return contacts.some(item => item.name.toLowerCase() === name.toLowerCase());
   };
 
   addToContacts = ({ name, number }) => {
@@ -53,14 +51,6 @@ export default class App extends Component {
       this.setState({
         isAlreadyinContacts: true,
       });
-
-      setTimeout(() => {
-        this.setState(() => {
-          return {
-            isAlreadyinContacts: false,
-          };
-        });
-      }, 1500);
     } else {
       const contact = {
         name,
@@ -91,9 +81,7 @@ export default class App extends Component {
   applyFilter() {
     const { contacts, filter } = this.state;
 
-    return contacts.filter(item =>
-      item.name.toLowerCase().includes(filter.toLowerCase()),
-    );
+    return contacts.filter(item => item.name.toLowerCase().includes(filter.toLowerCase()));
   }
 
   render() {
@@ -109,8 +97,17 @@ export default class App extends Component {
           timeout={250}
           classNames={slideReverseTransition}
           unmountOnExit
+          onEntered={() => {
+            setTimeout(() => {
+              this.setState(() => {
+                return {
+                  isAlreadyinContacts: false,
+                };
+              });
+            }, 2000);
+          }}
         >
-          <PopUpNotification title="Already in contacts!" />
+          <PopUpNotification title="Contact already exist!" />
         </CSSTransition>
 
         <ContactForm onAddContact={this.addToContacts} />
@@ -123,10 +120,7 @@ export default class App extends Component {
           <Filter hanleFilterChange={this.hanleFilterChange} />
         </CSSTransition>
 
-        <ContactList
-          contacts={filteredContacts}
-          onRemoveContact={this.removeContact}
-        />
+        <ContactList contacts={filteredContacts} onRemoveContact={this.removeContact} />
       </TabletShape>
     );
   }
